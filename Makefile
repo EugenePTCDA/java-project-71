@@ -1,21 +1,19 @@
-.DEFAULT_GOAL := run-dist
+.PHONY: run-dist clean build test checkstyle report
 
-run-dist:
+run-dist: clean build test checkstyle report
 	./app/build/install/app/bin/app
 
 clean:
-	./app/gradlew.bat clean
+	./gradlew.bat -p app clean
 
 build:
-	./app/gradlew.bat installDist
+	./gradlew.bat -p app installDist
 
 test:
-	./app/gradlew.bat test
-
-report:
-	./app/gradlew.bat jacocoTestReport
+	./gradlew.bat -p app test
 
 checkstyle:
-	./app/gradlew.bat checkstyleMain
+	./gradlew.bat -p app checkstyleMain
 
-.PHONY: clean build test report checkstyle run-dist
+report:
+	./gradlew.bat -p app jacocoTestReport
