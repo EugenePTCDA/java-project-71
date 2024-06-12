@@ -4,8 +4,8 @@ plugins {
 }
 
 checkstyle {
-    toolVersion = '8.36.2'
-    configFile = file('config/checkstyle/checkstyle.xml')
+    toolVersion = "8.36.2"
+    configFile = file("config/checkstyle/checkstyle.xml")
 }
 
 group = "hexlet.code"
