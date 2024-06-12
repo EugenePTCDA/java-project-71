@@ -1,10 +1,16 @@
 plugins {
     application
     checkstyle
+    jacoco
 }
 
 checkstyle {
     toolVersion = "8.36.2"
+}
+
+jacoco {
+    toolVersion = "0.8.11"
+    reportsDirectory = layout.buildDirectory.dir("customJacocoReportDir")
 }
 
 group = "hexlet.code"
@@ -19,6 +25,7 @@ dependencies {
     testImplementation("org.junit.jupiter:junit-jupiter")
     implementation("info.picocli:picocli:4.7.6")
     implementation("com.fasterxml.jackson.core:jackson-databind:2.12.3")
+    implementation("org.jacoco:org.jacoco.core:0.8.11")
 }
 
 application {
@@ -35,4 +42,12 @@ tasks.test {
 
 tasks.getByName("run", JavaExec::class) {
     standardInput = System.`in`
+}
+
+tasks.jacocoTestReport {
+    reports {
+        xml.required = false
+        csv.required = false
+        html.outputLocation = layout.buildDirectory.dir("jacocoHtml")
+    }
 }
