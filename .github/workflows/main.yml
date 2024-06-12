@@ -20,7 +20,10 @@ jobs:
         run: chmod +x ./app/gradlew
 
       - name: Build with Gradle
-        run: ./app/gradlew build
+        uses: gradle/gradle-build-action@v2
+        with:
+          arguments: build
+          build-root-directory: app
 
       - name: Run tests
         run: .java-project-71/app/gradlew test
