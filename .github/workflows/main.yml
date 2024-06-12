@@ -17,13 +17,13 @@ jobs:
           distribution: 'temurin'
 
       - name: Grant execute permission for gradlew
-        run: chmod +x ./app/gradlew
+        run: chmod +x .java-project-71/app/gradlew
 
       - name: Build with Gradle
-        run: ./app/gradlew build
+        run: .java-project-71/app/gradlew build
 
       - name: Run tests
-        run: ./app/gradlew test
+        run: .java-project-71/app/gradlew test
 
       - name: Check code style
-        run: ./app/gradlew checkstyleMain
+        run: .java-project-71/app/gradlew checkstyleMain
