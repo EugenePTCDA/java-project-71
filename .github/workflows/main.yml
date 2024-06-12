@@ -25,8 +25,3 @@ jobs:
           arguments: build
           build-root-directory: app
 
-      - name: Run tests
-        run: .java-project-71/app/gradlew test
-
-      - name: Check code style
-        run: .java-project-71/app/gradlew checkstyleMain
