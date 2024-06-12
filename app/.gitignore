@@ -41,8 +41,7 @@ bin/
 ### Mac OS ###
 .DS_Store
 
-*.class
-
-*.xml
-
-*.idea
+app/.idea/*
+app/build/*
+.idea/*
+app/.gradle/*

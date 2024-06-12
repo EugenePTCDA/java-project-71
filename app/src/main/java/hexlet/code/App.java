@@ -57,11 +57,12 @@ public class App implements Callable<Integer> {
 
         TypeReference:
 
-        TypeReference — это вспомогательный класс в библиотеке Jackson, который позволяет захватить и сохранить информацию о типе во время выполнения программы.
+        TypeReference — это вспомогательный класс в библиотеке Jackson, который позволяет захватить и
+        сохранить информацию о типе во время выполнения программы.
         Он используется для передачи информации о типе в методы Jackson, такие как readValue.
          */
-        Map<String, Object> map1 = objectMapper.readValue(path1.toFile(), new TypeReference<>() {});
-        Map<String, Object> map2 = objectMapper.readValue(path2.toFile(), new TypeReference<>() {});
+        Map<String, Object> map1 = objectMapper.readValue(path1.toFile(), new TypeReference<>() { });
+        Map<String, Object> map2 = objectMapper.readValue(path2.toFile(), new TypeReference<>() { });
 
         String differences = findDifferences(map1, map2);
         System.out.println(differences);
@@ -69,7 +70,7 @@ public class App implements Callable<Integer> {
         return 0;
     }
 
-    private String findDifferences(Map<String, Object> map1, Map<String, Object> map2) {
+    public String findDifferences(Map<String, Object> map1, Map<String, Object> map2) {
         StringBuilder result = new StringBuilder("{\n");
         Set<String> allKeys = new TreeSet<>(map1.keySet());
         allKeys.addAll(map2.keySet());
