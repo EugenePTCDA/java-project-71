@@ -3,6 +3,11 @@ plugins {
     checkstyle
 }
 
+checkstyle {
+    toolVersion = '8.36.2'
+    configFile = file('config/checkstyle/checkstyle.xml')
+}
+
 group = "hexlet.code"
 version = "1.0-SNAPSHOT"
 
