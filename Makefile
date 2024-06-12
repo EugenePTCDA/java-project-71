@@ -4,16 +4,16 @@ run-dist: clean build test checkstyle report
 	./app/build/install/app/bin/app
 
 clean:
-	./gradlew.bat -p app clean
+	./app/gradlew.bat -p app clean
 
 build:
-	./gradlew.bat -p app installDist
+	./app/gradlew.bat -p app installDist
 
 test:
-	./gradlew.bat -p app test
+	./app/gradlew.bat -p app test
 
 checkstyle:
-	./gradlew.bat -p app checkstyleMain
+	./app/gradlew.bat -p app checkstyleMain
 
 report:
-	./gradlew.bat -p app jacocoTestReport
+	./app/gradlew.bat -p app jacocoTestReport
