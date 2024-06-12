@@ -16,4 +16,4 @@ checkstyle:
 	./app/gradlew checkstyleMain
 
 report:
-	./app/gradlew jacocoTestReport
+	cd app && ./gradlew jacocoTestReport
