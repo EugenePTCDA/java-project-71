@@ -24,7 +24,7 @@ jobs:
         with:
           arguments: build
           build-root-directory: app
-      - run: ./java-project-71/build/install/app/bin/app/gradlew checkstyleMain
+      - run: ./java-project-71/build/install/app/bin/app/gradlew.bat checkstyleMain
       - run: ./app/gradlew test
       # - name: Publish code coverage
       #   uses: paambaati/codeclimate-action@v5.0.0
