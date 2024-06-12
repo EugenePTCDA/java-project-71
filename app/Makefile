@@ -1,4 +1,4 @@
-run-dist: clean build checkstyle report
+run-dist: clean build test checkstyle report
 	build\\install\\app\\bin\\app
 
 checkstyle:
@@ -10,5 +10,10 @@ clean:
 build:
 	gradlew.bat installDist
 
+test:
+	gradlew.bat test
+
 report:
 	gradlew.bat jacocoTestReport
+
+.PHONY: build
