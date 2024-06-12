@@ -1,35 +1,19 @@
-.DEFAULT_GOAL := build-run
-run-dist:
-	./app/build/install/app/bin/app
+run-dist: clean build test checkstyle report
+	build\\install\\app\\bin\\app
+
+checkstyle:
+	gradlew.bat checkstyleMain
 
 clean:
-	make -C app clean
+	gradlew.bat clean
 
 build:
-	make -C app build
-
-install:
-	make -C app install
-
-run-dist:
-	make -C run-dist
-
-run:
-	make -C app run
+	gradlew.bat installDist
 
 test:
-	make -C app test
+	gradlew.bat test
 
 report:
-	make -C app report
-
-lint:
-	make -C app lint
-
-update-deps:
-	make -C app update-deps
-
-
-build-run: build run
+	gradlew.bat jacocoTestReport
 
 .PHONY: build
