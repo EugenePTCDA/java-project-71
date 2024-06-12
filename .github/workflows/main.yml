@@ -25,19 +25,13 @@ jobs:
           arguments: build
           build-root-directory: app
 
+      - name: Generate Code Coverage Report
+        run: ./app/gradlew -p app jacocoTestReport
+
       - name: Publish code coverage
         uses: paambaati/codeclimate-action@v3.1.1
         env:
           CC_TEST_REPORTER_ID: ${{secrets.CC_TEST_REPORTER_ID}}
         with:
-          coverageCommand: make report
-          coverageLocations: ${{github.workspace}}/app/build/reports/jacoco/test/jacocoTestReport.xml:jacoco
-
-      - name: Run CC Reporter after-build
-        run: |
-          ./cc-reporter after-build \
-            --exit-code $EXIT_CODE \
-            --coverage-input-type jacoco \
-            --prefix app
-        env:
-          CC_TEST_REPORTER_ID: ${{secrets.CC_TEST_REPORTER_ID}}
+          coverageCommand: ./cc-reporter after-build --exit-code 0 --coverage-input-type jacoco --prefix app
+          coverageLocations: app/build/reports/jacoco/test/jacocoTestReport.xml:jacoco
