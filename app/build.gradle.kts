@@ -5,7 +5,7 @@ plugins {
 
 checkstyle {
     toolVersion = "8.36.2"
-    configFile = file("java-project-71/app/config/checkstyle/checkstyle.xml")
+    configFile = file("config/checkstyle/checkstyle.xml")
 }
 
 group = "hexlet.code"
