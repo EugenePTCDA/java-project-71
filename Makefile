@@ -4,18 +4,18 @@ run-dist:
 	./app/build/install/app/bin/app
 
 clean:
-	./gradlew clean -C app
+	./app/gradlew.bat clean
 
 build:
-	./gradlew installDist -C app
+	./app/gradlew.bat installDist
 
 test:
-	./gradlew test -C app
+	./app/gradlew.bat test
 
 report:
-	./gradlew jacocoTestReport -C app
+	./app/gradlew.bat jacocoTestReport
 
 checkstyle:
-	./gradlew checkstyleMain
+	./app/gradlew.bat checkstyleMain
 
 .PHONY: clean build test report checkstyle run-dist
