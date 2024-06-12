@@ -23,6 +23,12 @@ jobs:
         with:
           arguments: build
           build-root-directory: app
+      - name: Run tests
+        run: ./app/gradlew test
+
+      - name: Check code style
+        run: ./app/gradlew checkstyleMain
+
       - name: Publish code coverage
         uses: paambaati/codeclimate-action@v3.1.1
         env:
