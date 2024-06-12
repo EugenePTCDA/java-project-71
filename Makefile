@@ -1,19 +1,35 @@
-.PHONY: run-dist clean build test checkstyle report
-
-run-dist: clean build test checkstyle report
+.DEFAULT_GOAL := build-run
+run-dist:
 	./app/build/install/app/bin/app
 
 clean:
-	./app/gradlew clean
+	make -C app clean
 
 build:
-	./app/gradlew installDist
+	make -C app build
+
+install:
+	make -C app install
+
+run-dist:
+	make -C run-dist
+
+run:
+	make -C app run
 
 test:
-	./app/gradlew test
-
-checkstyle:
-	./app/gradlew checkstyleMain
+	make -C app test
 
 report:
-	cd app && ./gradlew jacocoTestReport
+	make -C app report
+
+lint:
+	make -C app lint
+
+update-deps:
+	make -C app update-deps
+
+
+build-run: build run
+
+.PHONY: build
