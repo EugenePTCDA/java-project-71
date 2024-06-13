@@ -37,6 +37,13 @@ jobs:
           build-root-directory: app
           gradle-executable: ./gradlew
 
+      - name: Run test
+        uses: gradle/gradle-build-action@v3
+        with:
+          arguments: test
+          build-root-directory: app
+          gradle-executable: ./gradlew
+
       - name: Run Jacoco
         uses: gradle/gradle-build-action@v3
         with:
