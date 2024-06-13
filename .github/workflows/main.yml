@@ -37,7 +37,8 @@ jobs:
       - name: Publish Checkstyle code coverage
         uses: codecov/codecov-action@v3
         with:
-          token: ${{ secrets.CODECOV_TOKEN }} # Use the secret here
-          files: /home/runner/work/java-project-71/java-project-71/app/build/reports/checkstyle/main.xml
+          files: ./app/build/reports/checkstyle/main.xml
           flags: checkstyle
           fail_ci_if_error: true
+        env:
+          CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
