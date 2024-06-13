@@ -40,7 +40,10 @@ jobs:
           arguments: jacocoTestReport
           build-root-directory: app
           gradle-executable: ./gradlew
-
+      
+      - name: List files in the repository
+        run: ls -a ${{ github.workspace }}
+        
       - name: Publish code coverage
         uses: paambaati/codeclimate-action@v3.1.1
         env:
