@@ -34,11 +34,18 @@ jobs:
           build-root-directory: app
           gradle-executable: ./gradlew
 
-      - name: Publish Checkstyle code coverage
-        uses: codecov/codecov-action@v3
+      - name: Run Jacoco
+        uses: gradle/gradle-build-action@v3
         with:
-          files: ./app/build/reports/checkstyle/main.xml
-          flags: checkstyle
-          fail_ci_if_error: true
+          arguments: jacocoTestReport
+          build-root-directory: app
+          gradle-executable: ./gradlew
+
+      - name: Publish code coverage
+        uses: paambaati/codeclimate-action@v3.1.1
         env:
-          CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
+          CODECOV_TOKEN: ${{secrets.CODECOV_TOKEN}}
+          JACOCO_SOURCE_PATH: app/src/main/java
+        with:
+          coverageCommand: make report
+          coverageLocations: ${{github.workspace}}/app/build/reports/jacoco/test/jacocoTestReport.xml:jacoco
