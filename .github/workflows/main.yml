@@ -50,11 +50,14 @@ jobs:
       - name: List files in the repository2
         run: ls -a ${{ github.workspace }}/app
 
+      - name: List files in the /app/src/main/java
+        run: ls -a ${{ github.workspace }}/app/src/main/java
+
       - name: Publish code coverage
         uses: paambaati/codeclimate-action@v3.1.1
         env:
           CC_TEST_REPORTER_ID: ${{secrets.CODECLIMATE_TOKEN}}
-          #JACOCO_SOURCE_PATH: ${{github.workspace}}/app/src/main/java/hexlet/code
+          JACOCO_SOURCE_PATH: ${{github.workspace}}/app/src/main/java
           COVERAGE_COMMAND: ${{github.workspace}}/app/gradlew jacocoTestReport
           COVERAGE_LOCATIONS: ${{github.workspace}}/app/build/reports/jacoco/test/jacocoTestReport.xml:jacoco
           COVERAGE_INPUT_TYPE: jacoco
