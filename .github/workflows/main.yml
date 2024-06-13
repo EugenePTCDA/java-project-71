@@ -28,10 +28,11 @@ jobs:
           build-root-directory: app
           
       - name: Run Checkstyle
-        uses: gradle/gradle-build-action@v2
+        uses: gradle/gradle-build-action@v3
         with:
           arguments: checkstyleMain
-          #build-root-directory: app
+          build-root-directory: app
+          gradle-executable: ./gradlew
 
       - name: Publish Checkstyle code coverage
         uses: codecov/codecov-action@v3
