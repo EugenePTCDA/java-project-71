@@ -28,20 +28,20 @@ jobs:
         uses: gradle/gradle-build-action@v3
         with:
           arguments: build
-          #build-root-directory: app
+          build-root-directory: app
           
       - name: Run Checkstyle
         uses: gradle/gradle-build-action@v3
         with:
           arguments: checkstyleMain
-          #build-root-directory: app
+          build-root-directory: app
           gradle-executable: ./gradlew
 
       - name: Run Jacoco
         uses: gradle/gradle-build-action@v3
         with:
           arguments: jacocoTestReport
-          #build-root-directory: app
+          build-root-directory: app
           gradle-executable: ./gradlew
       
       - name: List files in the repository
@@ -56,5 +56,5 @@ jobs:
           CC_TEST_REPORTER_ID: ${{secrets.CODECLIMATE_TOKEN}}
           JACOCO_SOURCE_PATH: ./app/src/main/java
         with:
-          coverageCommand: ./app/gradlew jacocoTestReport
+          coverageCommand: ./gradlew jacocoTestReport
           coverageLocations: ${{github.workspace}}/app/build/reports/jacoco/test/jacocoTestReport.xml:jacoco
