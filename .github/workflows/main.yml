@@ -20,7 +20,10 @@ jobs:
 
       - name: Grant execute permission for gradlew
         run: chmod +x ./app/gradlew
-
+      
+      - name: Grand execute permission for gradlew.bat
+        run: chmod +x ./app/gradlew.bat
+      
       - name: Build with Gradle
         uses: gradle/gradle-build-action@v3
         with:
@@ -48,7 +51,7 @@ jobs:
         run: ls -a ${{ github.workspace }}/app
 
       - name: Publish code coverage
-        uses: paambaati/codeclimate-action@latest
+        uses: paambaati/codeclimate-action@v3.1.1
         env:
           CC_TEST_REPORTER_ID: ${{secrets.CODECLIMATE_TOKEN}}
           JACOCO_SOURCE_PATH: ./app/src/main/java
