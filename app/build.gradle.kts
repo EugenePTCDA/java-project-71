@@ -10,7 +10,6 @@ checkstyle {
 
 jacoco {
     toolVersion = "0.8.11"
-    reportsDirectory = layout.buildDirectory.dir("customJacocoReportDir")
 }
 
 group = "hexlet.code"
@@ -46,6 +45,7 @@ tasks.getByName("run", JavaExec::class) {
 
 tasks.jacocoTestReport {
     reports {
-        xml.required = false
+        xml.required = true
+        html.required = true
     }
 }
