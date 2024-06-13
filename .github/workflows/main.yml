@@ -51,14 +51,22 @@ jobs:
         run: ls -a ${{ github.workspace }}/app
 
       - name: Check file permissions
+        id: check-permissions
         uses: actions/github-script@v3
         with:
           script: |
             const fs = require('fs');
             const path = require('path');
             const filePath = path.join(process.env.GITHUB_WORKSPACE, 'app/build/reports/jacoco/test/jacocoTestReport.xml');
-            const stats = fs.statSync(filePath);
-            console.log(stats.mode);
+            try {
+              const stats = fs.statSync(filePath);
+              console.log(stats.mode);
+              return stats.mode.toString();
+            } catch (error) {
+              console.error('File not found or not accessible:', error);
+              throw error;
+            }
+          result-encoding: string
 
       - name: Upload coverage to Codecov
         uses: codecov/codecov-action@v1
