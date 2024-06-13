@@ -38,6 +38,6 @@ jobs:
         uses: codecov/codecov-action@v3
         with:
           token: ${{ secrets.CODECOV_TOKEN }} # Use the secret here
-          files: ./app/build/reports/checkstyle/main.xml
+          files: /home/runner/work/java-project-71/java-project-71/app/build/reports/checkstyle/main.xml
           flags: checkstyle
           fail_ci_if_error: true
