@@ -50,8 +50,15 @@ jobs:
       - name: List files in the repository2
         run: ls -a ${{ github.workspace }}/app
 
-      - name: List files in the /app/src/main/java
-        run: ls -a ${{ github.workspace }}/app/src/main/java
+      - name: Check file permissions
+        uses: actions/github-script@v3
+        with:
+          script: |
+            const fs = require('fs');
+            const path = require('path');
+            const filePath = path.join(process.env.GITHUB_WORKSPACE, 'app/build/reports/jacoco/test/jacocoTestReport.xml');
+            const stats = fs.statSync(filePath);
+            console.log(stats.mode);
 
       - name: Upload coverage to Codecov
         uses: codecov/codecov-action@v1
