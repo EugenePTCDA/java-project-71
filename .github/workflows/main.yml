@@ -63,9 +63,11 @@ jobs:
       - name: Grant read permissions to jacocoTestReport.xml
         run: chmod +r ${{github.workspace}}/app/build/reports/jacoco/test/jacocoTestReport.xml
 
-      - name: Upload coverage to Codecov
-        uses: codecov/codecov-action@v1
+      - name: Upload coverage to CodeClimate
+        uses: paambaati/codeclimate-action@v3.0.0
+        env:
+          CC_TEST_REPORTER_ID: ${{ secrets.CC_TEST_REPORTER_ID }}
         with:
-          token: ${{ secrets.CODECOV_TOKEN }}
-          file: ${{github.workspace}}/app/build/reports/jacoco/test/jacocoTestReport.xml
-          directory: ${{ github.workspace }}/app/src/main/java
+          coverageCommand: ls ${{ github.workspace }}/app/build/reports/jacoco/test/jacocoTestReport.xml
+          coverageLocations: |
+            ${{ github.workspace }}/app/build/reports/jacoco/test/jacocoTestReport.xml:jacoco-xml
