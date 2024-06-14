@@ -1,39 +1,51 @@
-import hexlet.code.App;
-import org.junit.jupiter.api.Test;
+import hexlet.code.utils.Differ;
 
-import java.util.Map;
-import java.util.TreeMap;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
+
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 
 import static org.junit.jupiter.api.Assertions.assertLinesMatch;
 
+
 public class AppTest {
 
-    @Test
-    void testFindDifferences() {
-        App app = new App();
+    private static String resultJson;
+    private static String resultPlain;
+    private static String resultStylish;
 
-        Map<String, Object> map1 = new TreeMap<>();
-        map1.put("host", "hexlet.io");
-        map1.put("timeout", 50);
-        map1.put("proxy", "123.234.53.22");
-        map1.put("follow", false);
+    private static Path getFixturePath(String fileName) {
+        return Paths.get("src", "test", "resources", fileName)
+                .toAbsolutePath().normalize();
+    }
 
-        Map<String, Object> map2 = new TreeMap<>();
-        map2.put("timeout", 20);
-        map2.put("verbose", true);
-        map2.put("host", "hexlet.io");
+    private static String readFixture(String fileName) throws Exception {
+        Path filePath = getFixturePath(fileName);
+        return Files.readString(filePath).strip();
+    }
 
-        String expected = """
-                {
-                  - follow: false
-                    host: hexlet.io
-                  - proxy: 123.234.53.22
-                  - timeout: 50
-                  + timeout: 20
-                  + verbose: true
-                }""";
+    @BeforeAll
+    public static void beforeAll() throws Exception {
+        resultJson = readFixture("textForTest1.txt").strip();
+        resultStylish = readFixture("textForTest2.txt").strip();
+        resultPlain = readFixture("textForTest3.txt").strip();
+    }
 
-        String result = app.findDifferences(map1, map2);
-        assertLinesMatch(expected.lines().toList(), result.lines().toList());
+    @ParameterizedTest
+    @ValueSource(strings = {"json", "yml", "yaml"})
+    public void generateTest(String format) throws Exception {
+        String filePath1 = getFixturePath("file1." + format).toString();
+        String filePath2 = getFixturePath("file2." + format).toString();
+
+        assertLinesMatch(resultStylish.lines().toList(), Differ.generate(filePath1, filePath2).lines().toList());
+
+        assertLinesMatch(resultStylish.lines().toList(), Differ.generate(filePath1, filePath2, "stylish").lines().toList());
+
+        assertLinesMatch(resultPlain.lines().toList(), Differ.generate(filePath1, filePath2, "plain").lines().toList());
+
+        assertLinesMatch(resultJson.lines().toList(), Differ.generate(filePath1, filePath2, "json").lines().toList());
     }
 }

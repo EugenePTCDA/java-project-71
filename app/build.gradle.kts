@@ -25,6 +25,8 @@ dependencies {
     implementation("info.picocli:picocli:4.7.6")
     implementation("com.fasterxml.jackson.core:jackson-databind:2.12.3")
     implementation("org.jacoco:org.jacoco.core:0.8.11")
+    implementation("com.fasterxml.jackson.dataformat:jackson-dataformat-yaml:2.14.2")
+    implementation("org.apache.commons:commons-lang3:3.12.0")
 }
 
 application {
