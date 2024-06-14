@@ -40,12 +40,16 @@ public class AppTest {
         String filePath1 = getFixturePath("file1." + format).toString();
         String filePath2 = getFixturePath("file2." + format).toString();
 
-        assertLinesMatch(resultStylish.lines().toList(), Differ.generate(filePath1, filePath2).lines().toList());
+        assertLinesMatch(resultStylish.lines().toList(),
+                Differ.generate(filePath1, filePath2).lines().toList());
 
-        assertLinesMatch(resultStylish.lines().toList(), Differ.generate(filePath1, filePath2, "stylish").lines().toList());
+        assertLinesMatch(resultStylish.lines().toList(),
+                Differ.generate(filePath1, filePath2, "stylish").lines().toList());
 
-        assertLinesMatch(resultPlain.lines().toList(), Differ.generate(filePath1, filePath2, "plain").lines().toList());
+        assertLinesMatch(resultPlain.lines().toList(),
+                Differ.generate(filePath1, filePath2, "plain").lines().toList());
 
-        assertLinesMatch(resultJson.lines().toList(), Differ.generate(filePath1, filePath2, "json").lines().toList());
+        assertLinesMatch(resultJson.lines().toList(),
+                Differ.generate(filePath1, filePath2, "json").lines().toList());
     }
 }
