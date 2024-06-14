@@ -7,7 +7,7 @@ import hexlet.code.interfaces.Parser;
 import java.util.Map;
 import java.util.TreeMap;
 
-public class JsonParser implements Parser {
+public final class JsonParser implements Parser {
 
     @Override
     public Map<String, Object> parse(String content) throws Exception {

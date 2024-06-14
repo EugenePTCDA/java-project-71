@@ -11,7 +11,7 @@ import java.nio.file.Paths;
 import static org.junit.jupiter.api.Assertions.assertLinesMatch;
 
 
-final public class AppTest {
+public class AppTest {
 
     private static String resultJson;
     private static String resultPlain;

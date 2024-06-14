@@ -14,7 +14,7 @@ import java.util.concurrent.Callable;
         version = "gendiff 1.0" //Пусть пока так
 )
 
-public class App implements Callable<Integer> {
+public final class App implements Callable<Integer> {
 
     @Parameters(index = "0", description = "Path to first file")
     private String filepath1;

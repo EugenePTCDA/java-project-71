@@ -5,7 +5,7 @@ import hexlet.code.interfaces.Parser;
 import java.util.HashMap;
 import java.util.Map;
 
-public class ParserFactory {
+public final class ParserFactory {
     private static final Map<String, Class<? extends Parser>> REGISTRY = new HashMap<>();
 
     static {
