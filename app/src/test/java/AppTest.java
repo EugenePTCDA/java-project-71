@@ -1,4 +1,4 @@
-import hexlet.code.utils.Differ;
+import hexlet.code.Differ;
 
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.params.ParameterizedTest;

@@ -1,7 +1,9 @@
-package hexlet.code.utils;
+package hexlet.code;
 
 import hexlet.code.interfaces.Parser;
 import hexlet.code.parsers.ParserFactory;
+import hexlet.code.utils.DiffBuilder;
+import hexlet.code.utils.Formatter;
 
 import java.nio.file.Files;
 import java.nio.file.Paths;
